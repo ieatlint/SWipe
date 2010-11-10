@@ -28,8 +28,12 @@ SWipe::~SWipe() {
 
 
 void SWipe::mkWindow() {
+        QScrollArea *scroll = new QScrollArea;
 	QWidget *widget = new QWidget;
 	QVBoxLayout *layout = new QVBoxLayout( widget );
+
+        scroll->setWidget( widget );
+        scroll->setWidgetResizable( true );
 
 	QFormLayout *form = new QFormLayout;
 	form->addRow( "Raw Chars:", &charStreamLabel );
@@ -57,9 +61,10 @@ void SWipe::mkWindow() {
 	connect( &mainBtn, SIGNAL( clicked() ), this, SLOT( mainBtn_clicked() ) );
 
 
-	resize( 640, 480 );
+        resize( 640, 480 );
 
-	setCentralWidget( widget );
+
+        setCentralWidget( scroll );
 }
 
 
@@ -131,7 +136,11 @@ void SWipe::showCard( MagCard card ) {
 		typeLabel.setText( "Unknown" );
 
 	accountNumberLabel.setText( card.accountNumber );
-	accountHolderLabel.setText( card.accountHolder );
+        if( card.accountHolder.isEmpty() )
+                accountHolderLabel.setText( "n/a" );
+        else
+            accountHolderLabel.setText( card.accountHolder );
+
 	if( card.type & MagCard::CARD_CC ) {
 		accountIssuerLabel.setText( card.accountIssuer );
 		if( card.accountValid )
@@ -154,6 +163,9 @@ void SWipe::showCard( MagCard card ) {
 		aamvaIssuerLabel.setText( "n/a" );
 		aamvaIssuerNameLabel.setText( "n/a" );
 		aamvaBirthdayLabel.setText( "n/a" );
+                aamvaAgeLabel.setText( "n/a" );
 	}
+
+        card.clear();
 
 }
