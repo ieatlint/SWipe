@@ -65,6 +65,24 @@ class MagCard {
 			swipeValid = false;
 		}
 
+                void clear() {
+                        bitStream.clear();
+                        charStream.clear();
+                        swipeValid = false;
+                        type = CARD_UNSET;
+                        accountNumber.clear();
+                        accountHolder.clear();
+                        accountIssuer.clear();
+                        expirationDate = QDate::QDate();
+                        miscData.clear();
+                        accountValid = false;
+                        aamvaIssuer.clear();
+                        aamvaIssuerName.clear();
+                        aamvaIssuerAbr.clear();
+                        aamvaBirthday = QDate::QDate();
+                        aamvaAge = 0;
+                }
+
 };
 
 Q_DECLARE_OPERATORS_FOR_FLAGS( MagCard::Types )
