@@ -1,4 +1,5 @@
-#include <QtGui/QApplication>
+//#include <QtGui/QApplication>
+#include <QtWidgets/QApplication>
 #include "swipe.h"
 
 int main(int argc, char *argv[])

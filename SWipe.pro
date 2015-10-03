@@ -4,7 +4,8 @@
 #
 #-------------------------------------------------
 
-QT       += core gui multimedia
+QT += core gui multimedia
+QT += widgets
 
 TARGET = SWipe
 TEMPLATE = app
